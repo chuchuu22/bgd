@@ -4,10 +4,14 @@ namespace: bgdk
 resources:
   - ./base
   - bgdk-ns.yaml
-patchJson6902:
+patchesJson6902:
   - target:
     group: apps
     version: v1
     kind: Deployment
     name: bgd
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: yellow
   
