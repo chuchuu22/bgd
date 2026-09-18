@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta
+kind: Kustomizaion
+namespace: bgdk
+resources:
+  - ./base
+  - bgdk-ns.yaml
+patchJson6902:
+  - target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: bgd
+  patch: |-
+    - op: replace
+    path: /sprc/template/spec/containers/0/env/values
+    value: yellow
